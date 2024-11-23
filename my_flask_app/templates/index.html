@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema Experto en Diagnóstico de Hepatitis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        form {
+            width: 45%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .diagnosis {
+            width: 45%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        .additional-tests {
+            display: none;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            if (checkboxes.length === 0) {
+                alert("Por favor seleccione al menos un síntoma.");
+                return false;
+            }
+            return true;
+        }
+
+        function showAdditionalTests(diagnosis) {
+            var additionalTests = document.querySelector('.additional-tests');
+            if (diagnosis.includes("Hepatitis A")) {
+                document.querySelectorAll('.test-for-hep-e').forEach(function(el) {
+                    el.style.display = 'block';
+                });
+            }
+            if (diagnosis.includes("Hepatitis B")) {
+                document.querySelectorAll('.test-for-hep-d').forEach(function(el) {
+                    el.style.display = 'block';
+                });
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Sistema Experto en Diagnóstico de Hepatitis</h1>
+    <div class="container">
+        <form action="/" method="post" onsubmit="return validateForm()">
+            <label>
+                <input type="checkbox" name="symptoms" value="ictericia"> Ictericia (piel/ojos amarillos)
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="fiebre"> Fiebre/Febrícula
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="dolor abdominal"> Dolor abdominal
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="comida contaminada"> Ingestión de alimentos contaminados
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="sangre/fluidos"> Exposición a sangre o fluidos corporales
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="sangre"> Exposición a sangre
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="agua/comida contaminada"> Ingestión de agua/alimentos contaminados
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="pérdida del apetito"> Pérdida del apetito
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="náusea"> Náusea
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="vómitos"> Vómitos
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="diarrea"> Diarrea
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="orina oscura"> Orina oscura
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="heces pálidas"> Heces pálidas
+            </label>
+            <button type="submit">Diagnosticar</button>
+        </form>
+        <div class="diagnosis">
+            <label>Diagnóstico:</label>
+            <textarea id="diagnostico" rows="10" cols="50" readonly>{{ diagnosis }}</textarea>
+            <div class="additional-tests test-for-hep-e">
+                <h3>Pruebas Adicionales para Hepatitis E:</h3>
+                <label>
+                    <input type="checkbox" name="symptoms" value="anti-VHE positivo"> Anti-VHE positivo
+                </label>
+            </div>
+            <div class="additional-tests test-for-hep-d">
+                <h3>Pruebas Adicionales para Hepatitis D:</h3>
+                <label>
+                    <input type="checkbox" name="symptoms" value="VHB positivo"> Diagnóstico de VHB
+                </label>
+                <label>
+                    <input type="checkbox" name="symptoms" value="anti-VHD positivo"> Anti-VHD positivo
+                </label>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var diagnosis = document.getElementById('diagnostico').value;
+            showAdditionalTests(diagnosis);
+        });
+    </script>
+</body>
+</html>
+
