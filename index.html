@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sistema Experto en Diagnóstico de Hepatitis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+        }
+        form {
+            width: 45%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .diagnosis {
+            width: 45%;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            if (checkboxes.length === 0) {
+                alert("Por favor seleccione al menos un síntoma.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <h1>Sistema Experto en Diagnóstico de Hepatitis</h1>
+    <div class="container">
+        <form action="/diagnosticar" method="post" onsubmit="return validateForm()">
+            <label>
+                <input type="checkbox" name="symptoms" value="dolor abdominal"> Dolor abdominal
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="orina turbia"> Orina turbia
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="deposiciones pálidas"> Deposiciones pálidas
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="fatiga"> Fatiga
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="febrícula"> Febrícula
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="picazón"> Picazón
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="ictericia"> Ictericia (coloración amarillenta de la piel o los ojos)
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="inapetencia"> Inapetencia
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="náuseas"> Náuseas
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="vómitos"> Vómitos
+            </label>
+            <label>
+                <input type="checkbox" name="symptoms" value="pérdida de peso"> Pérdida de peso
+            </label>
+            <button type="submit">Diagnosticar</button>
+        </form>
+        <div class="diagnosis">
+            <label>Diagnóstico:</label>
+            <textarea id="diagnostico" rows="10" cols="50"
